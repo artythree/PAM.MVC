@@ -389,24 +389,24 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PAM.Data\PAM.Data.csproj">
-      <Project>{1C56B130-CF9F-422B-ABC6-D7DF7C512676}</Project>
-      <Name>PAM.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PAM.Models\PAM.Models.csproj">
-      <Project>{b5cdf951-9585-4692-926d-5875af26e65a}</Project>
-      <Name>PAM.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PAM.Services\PAM.Services.csproj">
-      <Project>{23155cbd-0b1a-4c29-9cc3-0638534295d9}</Project>
-      <Name>PAM.Services</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PAM.DataN\PAM.DataN.csproj">
+      <Project>{82acdf5a-3d23-4cb3-829a-3b4e87d5ad9e}</Project>
+      <Name>PAM.DataN</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PAM.ModelsN\PAM.ModelsN.csproj">
+      <Project>{97379e71-373f-4df1-bd51-da86084b4c33}</Project>
+      <Name>PAM.ModelsN</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PAM.ServicesN\PAM.ServicesN.csproj">
+      <Project>{693db15d-5cbe-448f-8a2a-36afaf69238b}</Project>
+      <Name>PAM.ServicesN</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

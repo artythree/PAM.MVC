@@ -1,11 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Web.Optimization;
-using NumSharp;
-using Tensorflow;
-
+using System.Text; 
 using PAM.Data;
 
 namespace PAM.Models.Optimizers

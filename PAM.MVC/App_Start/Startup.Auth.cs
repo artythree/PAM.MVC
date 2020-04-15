@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using PAM.Data;
+using PAM.DataN;
 using PAM.MVC.Models;
 
 namespace PAM.MVC
