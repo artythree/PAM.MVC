@@ -1,0 +1,48 @@
+﻿@model IEnumerable<PAM.DataN.Search>
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("New search", "create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(Model => Model.SearchId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.Stock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.DateOfSearch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.UserId)
+        </th>
+        
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(Model => item.SearchId)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => item.Stock)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => item.DateOfSearch)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => item.UserId)
+            </td>
+            <td>
+                @*@Html.ActionLink("Check Today's Prediction", "Detail", new { id = item.PerceptronId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.PerceptronId })*@
+            </td>
+        </tr>
+    }
+</table>

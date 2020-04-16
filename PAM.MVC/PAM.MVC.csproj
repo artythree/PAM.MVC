@@ -391,10 +391,12 @@
     <Content Include="Views\MarketData\ListByTicker.cshtml" />
     <Content Include="Views\MarketData\Create.cshtml" />
     <Content Include="Views\MarketData\Delete.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Search\Create.cshtml" />
+    <Content Include="Views\Search\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
