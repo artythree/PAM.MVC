@@ -1,12 +1,12 @@
 ﻿using AlphaVantage.Net.Stocks.TimeSeries;
 using Newtonsoft.Json;
-using PAM.Data;
-using PAM.Models.Optimizers;
+using PAM.DataN;
+using PAM.ModelsN.Optimizers;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
-namespace PAM.Models
+namespace PAM.ModelsN
 {
     public class NetworkInitializer
     {
@@ -14,35 +14,25 @@ namespace PAM.Models
         ApplicationDbContext context = new ApplicationDbContext();
 
 
-        public async Task<string> GetMarketData(string ticker)
+        
+        public Perceptron CreatePerceptron(string ticker)
         {
-            int counter = 0;
-            bool dateIncluded = false;
-            foreach (MarketData data in context.MarketDataPoints)
+            int perceptronId = -1;
+            foreach (Perceptron perceptron in context.Perceptrons)
             {
-                if (data.Ticker == ticker)
+                if (perceptron.Stock == ticker)
                 {
-                    counter += 1;
-                }
-                if (data.Date.Date == DateTime.Today.AddDays(-1))
-                {
-                    dateIncluded = true;
+                    perceptronId = perceptron.PerceptronId;
                 }
             }
-            if (counter == 0 && dateIncluded == false)
+            if (perceptronId == -1)
             {
-                await connection.GetStocksAll(ticker);
+                Perceptron perceptron = new Perceptron();
+                perceptron.Stock = ticker;
 
-                return "Added all stocks";
+                return perceptron;
             }
-            else if (counter != 0 && dateIncluded == false)
-            {
-                await connection.GetStocksToday(ticker);
-
-                return "Added stock for today";
-            }
-            return "Value already in directory no change.";
-
+            return context.Perceptrons.Find(perceptronId);
         }
         public bool CreateNetwork(string ticker)
         {
@@ -72,21 +62,21 @@ namespace PAM.Models
                     neuron.PerceptronId = perceptronId;
                     neuron.Weight = random.NextDouble();
                     context.Neurons.Add(neuron);
-                    context.SaveChanges();
 
 
                     x -= 1;
                 }
+
                 x = 365;
                 while (x > 0)
                 {
                     NeuronLayerOne neuronLayerOne = new NeuronLayerOne();
                     neuronLayerOne.PerceptronId = perceptronId;
                     context.LayerOneNeurons.Add(neuronLayerOne);
-                    context.SaveChanges();
 
                     x -= 1;
                 }
+
 
                 x = 365;
                 while (x > 0)
@@ -94,47 +84,63 @@ namespace PAM.Models
                     NeuronLayerTwo neuronLayerTwo = new NeuronLayerTwo();
                     neuronLayerTwo.PerceptronId = perceptronId;
                     context.LayerTwoNeurons.Add(neuronLayerTwo);
-                    context.SaveChanges();
+
 
                     x -= 1;
                 }
-                foreach (Neuron neuron in context.Neurons)
-                {
-                    foreach (NeuronLayerOne neuronLayerOne in context.LayerOneNeurons)
-                    {
 
-                        WeightJoiningTableLayerOne weight = new WeightJoiningTableLayerOne();
-                        weight.NeuronId = neuron.NeuronId;
-                        weight.NeuronLayerOneId = neuronLayerOne.NeuronLayerOneId;
-                        weight.Weight = random.NextDouble();
-                        context.LayerOneWeights.Add(weight);
-                        context.SaveChanges();
-
-                    }
-                }
-                foreach (NeuronLayerOne neuronLayerOne in context.LayerOneNeurons)
-                {
-                    foreach (NeuronLayerTwo neuronLayerTwo in context.LayerTwoNeurons)
-                    {
-
-                        WeightJoiningTableLayerTwo weight = new WeightJoiningTableLayerTwo();
-                        weight.NeuronLayerOneId = neuronLayerOne.NeuronLayerOneId;
-                        weight.NeuronLayerTwoId = neuronLayerTwo.NeuronLayerTwoId;
-                        weight.Weight = random.NextDouble();
-                        context.LayerTwoWeights.Add(weight);
-                        context.SaveChanges();
-
-                    }
-                }
+                context.SaveChanges();
                 return true;
             }
             return false;
         }
+        public bool InitializeJoiningTables(string ticker)
+        {
+            List<WeightJoiningTableLayerOne> listOne = new List<WeightJoiningTableLayerOne>();
+            List<WeightJoiningTableLayerTwo> listTwo = new List<WeightJoiningTableLayerTwo>();
+            Random random = new Random();
+            foreach (Neuron neuron in context.Neurons)
+            {
+                
+                foreach (NeuronLayerOne neuronLayerOne in context.LayerOneNeurons)
+                {
+
+                    WeightJoiningTableLayerOne weight = new WeightJoiningTableLayerOne();
+                    weight.NeuronId = neuron.NeuronId;
+                    weight.NeuronLayerOneId = neuronLayerOne.NeuronLayerOneId;
+                    weight.Weight = random.NextDouble();
+                    listOne.Add(weight);
+
+                    context.LayerOneWeights.AddRange(listOne);
+                    listOne.Clear();
+                }
+
+            }
+            context.SaveChanges();
+            foreach (NeuronLayerOne neuronLayerOne in context.LayerOneNeurons)
+            {
+                
+                foreach (NeuronLayerTwo neuronLayerTwo in context.LayerTwoNeurons)
+                {
+
+                    WeightJoiningTableLayerTwo weight = new WeightJoiningTableLayerTwo();
+                    weight.NeuronLayerOneId = neuronLayerOne.NeuronLayerOneId;
+                    weight.NeuronLayerTwoId = neuronLayerTwo.NeuronLayerTwoId;
+                    weight.Weight = random.NextDouble();
+                    listTwo.Add(weight);
+
+                    context.LayerTwoWeights.AddRange(listTwo);
+                    listTwo.Clear();
+                }
+            }
+            context.SaveChanges();
+            return true;
+        }
         public bool TrainNetwork(string ticker)
         {
-            
+
             Adam adam = new Adam();
-            
+
             int perceptronId = -1;
             int neuronCounter = 0;
 
@@ -158,6 +164,6 @@ namespace PAM.Models
             }
             return false;
         }
-       
+
     }
 }

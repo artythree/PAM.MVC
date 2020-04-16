@@ -2,13 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PAM.Data
+namespace PAM.DataN
 {
     public class Search
     {
         [Key]
         public int SearchId { get; set; }
-        public string Index { get; set; }
         public string Stock { get; set; }
         public DateTimeOffset DateOfSearch { get; set; }
 

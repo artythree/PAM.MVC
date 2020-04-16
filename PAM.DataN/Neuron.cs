@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace PAM.Data
+namespace PAM.DataN
 {
-    
     public class Neuron
     {
        [Key]
@@ -42,35 +41,30 @@ namespace PAM.Data
     public class WeightJoiningTableLayerOne
     {
 
+        [Key]
+        public int Id { get; set; }
+
+        [ForeignKey(nameof(NeuronId))]
         public virtual Neuron Neuron { get; set; }
+        public int? NeuronId { get; set; }
 
-        [ForeignKey(nameof(Neuron))]
-        [Key, Column(Order = 0)]
-        public int NeuronId { get; set; }
-
+        [ForeignKey(nameof(NeuronLayerOneId))]
         public virtual NeuronLayerOne NeuronLayerOne { get; set; }
-
-        [ForeignKey(nameof(NeuronLayerOne))]
-        [Key, Column(Order =1)]
-
-        public int NeuronLayerOneId { get; set; }
+        public int? NeuronLayerOneId { get; set; }
         public double Weight { get; set; }
     }
     public class WeightJoiningTableLayerTwo
     {
+        [Key]
+        public int Id { get; set; }
+
+        [ForeignKey(nameof(NeuronLayerTwoId))]
         public virtual Neuron NeuronLayerTwo { get; set; }
+        public int? NeuronLayerTwoId { get; set; }
 
-        [ForeignKey(nameof(NeuronLayerTwo))]
-        [Key, Column(Order = 0)]
-
-        public int NeuronLayerTwoId { get; set; }
-
+        [ForeignKey(nameof(NeuronLayerOneId))]
         public virtual NeuronLayerOne NeuronLayerOne { get; set; }
-
-        [ForeignKey(nameof(NeuronLayerOne))]
-        [Key, Column(Order = 1)]
-
-        public int NeuronLayerOneId { get; set; }
+        public int? NeuronLayerOneId { get; set; }
         public double Weight { get; set; }
     }
 }

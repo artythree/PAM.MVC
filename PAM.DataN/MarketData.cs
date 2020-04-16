@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Text;
 
-namespace PAM.Data
+namespace PAM.DataN
 {
     public class MarketData
     {

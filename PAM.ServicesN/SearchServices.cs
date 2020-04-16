@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PAM.ServicesN
 {
-    public class Class1
+    public class SearchServices
     {
     }
 }

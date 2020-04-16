@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace PAM.Data
+namespace PAM.DataN
 {
     public class Perceptron
     {
@@ -37,5 +37,11 @@ namespace PAM.Data
         ApplicationDbContext context = new ApplicationDbContext();
 
     }
-      
+    public class PerceptronListItem
+    {
+        public string Stock { get; set; }
+        public double Error { get; set; }
+        public double Output { get; set; }
+    }
+
 }

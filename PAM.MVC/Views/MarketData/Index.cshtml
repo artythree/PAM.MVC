@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PAM.DataN.MarketData>
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ticker)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PercentChange)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Ticker)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PercentChange)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Date)
+    </td>
+    <td>
+
+        @Html.ActionLink("View this stock", "ListByTicker", new { id = item.Ticker })
+        @Html.ActionLink("Delete", "Delete", new { id = item.Ticker })
+
+    </td>
+</tr>
+    }
+
+</table>

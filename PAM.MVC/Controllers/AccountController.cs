@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using PAM.Data;
+using PAM.DataN;
 using PAM.MVC.Models;
 
 namespace PAM.MVC.Controllers

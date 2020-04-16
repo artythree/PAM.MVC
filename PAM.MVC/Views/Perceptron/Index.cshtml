@@ -1,0 +1,48 @@
+﻿@model IEnumerable<PAM.DataN.Perceptron>
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("create new", "create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(Model => Model.PerceptronId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.Stock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.Output)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.Error)
+        </th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(Model => item.PerceptronId)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => item.Stock)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => item.Output)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => item.Error)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "Edit", new { id = item.PerceptronId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.PerceptronId })
+            </td>
+        </tr>
+    }
+</table>

@@ -108,12 +108,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="MarketDataServices.cs" />
+    <Compile Include="PerceptronServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PAM.DataN\PAM.DataN.csproj">
+      <Project>{82ACDF5A-3D23-4CB3-829A-3B4E87D5AD9E}</Project>
+      <Name>PAM.DataN</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -213,6 +213,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MarketDataController.cs" />
+    <Compile Include="Controllers\PerceptronController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -381,9 +384,17 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Perceptron\Index.cshtml" />
+    <Content Include="Views\Perceptron\Create.cshtml" />
+    <Content Include="Views\Perceptron\Delete.cshtml" />
+    <Content Include="Views\MarketData\Index.cshtml" />
+    <Content Include="Views\MarketData\ListByTicker.cshtml" />
+    <Content Include="Views\MarketData\Create.cshtml" />
+    <Content Include="Views\MarketData\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

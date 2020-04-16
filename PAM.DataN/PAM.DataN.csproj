@@ -109,9 +109,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APIConnection.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="MarketData.cs" />
+    <Compile Include="Migrations\202004151826428_init.cs" />
+    <Compile Include="Migrations\202004151826428_init.designer.cs">
+      <DependentUpon>202004151826428_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004152121541_cascade.cs" />
+    <Compile Include="Migrations\202004152121541_cascade.designer.cs">
+      <DependentUpon>202004152121541_cascade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004152306099_Search.cs" />
+    <Compile Include="Migrations\202004152306099_Search.designer.cs">
+      <DependentUpon>202004152306099_Search.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Neuron.cs" />
     <Compile Include="Perceptron.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,6 +132,17 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202004151826428_init.resx">
+      <DependentUpon>202004151826428_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004152121541_cascade.resx">
+      <DependentUpon>202004152121541_cascade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004152306099_Search.resx">
+      <DependentUpon>202004152306099_Search.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

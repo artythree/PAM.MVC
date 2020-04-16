@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text; 
-using PAM.Data;
+using PAM.DataN;
 
-namespace PAM.Models.Optimizers
+namespace PAM.ModelsN.Optimizers
 {
     public class Adam
     {

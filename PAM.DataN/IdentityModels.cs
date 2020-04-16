@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace PAM.Data
+namespace PAM.DataN
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
@@ -32,7 +32,6 @@ namespace PAM.Data
         public DbSet<NeuronLayerTwo> LayerTwoNeurons { get; set; }
         public DbSet<WeightJoiningTableLayerTwo> LayerTwoWeights { get; set; }
         public DbSet<WeightJoiningTableLayerOne> LayerOneWeights { get; set; }
-
         public DbSet<Perceptron> Perceptrons { get; set; }
         public DbSet<MarketData> MarketDataPoints { get; set; }
 

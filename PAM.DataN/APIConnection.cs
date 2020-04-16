@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PAM.Data
+namespace PAM.DataN
 {
     //UI2LXNQXDODSOR3L is API key
     public class APIConnection
