@@ -24,16 +24,12 @@ namespace PAM.MVC.Controllers
                     from data in _db.MarketDataPoints
                     where data.Date == DateTime.Today
                     select data;
-            return View(dataQuery.ToList());
+            return View(_db.MarketDataPoints.ToList().OrderByDescending(x=>x.Date));
         }
         // GET: MarketData{ticker}
-        public ActionResult ListByTicker(MarketData datum)
+        public ActionResult ListByTicker(MarketData ticker)
         {
-            IQueryable<MarketData> dataQuery =
-                    from data in _db.MarketDataPoints
-                    where data.Ticker == datum.Ticker
-                    select data;
-            return View(dataQuery.ToList());
+            return View(_db.MarketDataPoints.Where(x=>x.Ticker==ticker.Ticker).ToList());
         }
         // GET: MarketData/Create
         public ActionResult Create()
@@ -61,7 +57,7 @@ namespace PAM.MVC.Controllers
                     from data in _db.MarketDataPoints
                     where data.Ticker == ticker
                     select data;
-                return View(dataQuery);
+                return RedirectToAction("Index");
             }
             return View(ticker);
         }

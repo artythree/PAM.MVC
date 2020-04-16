@@ -28,7 +28,7 @@ namespace PAM.ServicesN
                     dateIncluded = true;
                 }
             }
-            if (counter == 0 && dateIncluded == false)
+            if (counter == 0 )
             {
                 await connection.GetStocksAll(ticker);
 

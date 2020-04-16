@@ -37,19 +37,16 @@ namespace PAM.MVC.Controllers
                 if (sService.HasBeenSearched(search.Stock))
                 {
 
-                    IQueryable<MarketData> dataQueryOne =
-                    from data in _db.MarketDataPoints
-                    where data.Ticker == search.Stock
-                    select data;
-                    return View(dataQueryOne.ToList());
+                    //IQueryable<MarketData> dataQueryOne =
+                    //from data in _db.MarketDataPoints
+                    //where data.Ticker == search.Stock
+                    //select data;
+                    return View(_db.Searches.Where(x=>x.Stock==search.Stock));
 
                 }
                 await mService.GetMarketData(search.Stock);
-                IQueryable<MarketData> dataQuery =
-                    from data in _db.MarketDataPoints
-                    where data.Ticker == search.Stock
-                    select data;
-                return View(dataQuery.ToList());
+                
+                return View(search);
             }
             return View(search);
         }

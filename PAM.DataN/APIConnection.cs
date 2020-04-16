@@ -21,22 +21,22 @@ namespace PAM.DataN
             StockTimeSeries timeSeries = await client.RequestDailyTimeSeriesAsync($"{ticker}", TimeSeriesSize.Full, true);
 
             int perceptronId = 0;
-            foreach (var perceptron in context.Perceptrons)
-            {
-                if (perceptron.Stock == ticker)
-                {
-                    perceptronId = perceptron.PerceptronId;
-                }
-            }
-            if (perceptronId == 0)
-            {
-                Perceptron perceptron = new Perceptron();
-                perceptron.Stock = ticker;
+            //foreach (var perceptron in context.Perceptrons)
+            //{
+            //    if (perceptron.Stock == ticker)
+            //    {
+            //        perceptronId = perceptron.PerceptronId;
+            //    }
+            //}
+            //if (perceptronId == 0)
+            //{
+            //    Perceptron perceptron = new Perceptron();
+            //    perceptron.Stock = ticker;
 
-                context.Perceptrons.Add(perceptron);
-                perceptronId = context.Perceptrons.Find(perceptron).PerceptronId;
-                await context.SaveChangesAsync();
-            }
+            //    context.Perceptrons.Add(perceptron);
+            //    perceptronId = context.Perceptrons.Find(perceptron.PerceptronId).PerceptronId;
+            //    await context.SaveChangesAsync();
+            //}
             foreach (var dataPoint in timeSeries.DataPoints)
             {
                 MarketData DataPoint = new MarketData();
